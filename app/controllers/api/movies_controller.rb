@@ -1,8 +1,13 @@
-class MoviesController < ApplicationController
+class Api::MoviesController < ApplicationController
 
-  def last_actor_action
-    @actor = Actor.last
-    render "last_actor.json.jbuilder"
+  def first_movie_action
+    @movie = Movie.first
+    render "first_movie.json.jbuilder"
+  end
+
+  def all_movies_action
+    @movies = Movie.all
+    render "all_movies.json.jbuilder"
   end
 
 end

@@ -6,3 +6,5 @@ actor = Actor.create({first_name: "Gal", last_name: "Gadot", known_for: "Wonder 
 actor = Actor.new({first_name: "Bruce", last_name: "Campbell", known_for: "Evil Dead"})
 actor.save
 
+movie = Movie.create(title: "Bambi", year: 1942, plot: "A baby deer must survive on his own after being orphaned by a hunter.")
+
