@@ -21,9 +21,11 @@ class Api::ActorsController < ApplicationController
       gender: params[:gender]
       )
 
-    @actor.save
-
-    render "actor_show.json.jbuilder"
+    if @actor.save
+      render "actor_show.json.jbuilder"
+    else
+      render json: {errors: @actor.errors.full_messages}, status: :unprocessable_entity
+    end
 
   end
 
@@ -38,9 +40,11 @@ class Api::ActorsController < ApplicationController
     @actor.age = params[:age] || @actor.age
     @actor.gender = params[:gender] || @actor.gender
 
-    @actor.save
-
-    render "actor_show.json.jbuilder"
+    if @actor.save
+      render "actor_show.json.jbuilder"
+    else
+      render json: {errors: @actor.errors.full_messages}, status: :unprocessable_entity
+    end
 
   end
 
