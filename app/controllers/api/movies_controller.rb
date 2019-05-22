@@ -2,7 +2,7 @@ class Api::MoviesController < ApplicationController
 
   def index
 
-    @movies = Movie.where(english: true)
+    @movies = Movie.all
     render "index.json.jbuilder"
 
   end
@@ -17,7 +17,6 @@ class Api::MoviesController < ApplicationController
   def create
    
     @movie = Movie.new(
-      id: params[:id],
       title: params[:title],
       year: params[:year],
       plot: params[:plot],
@@ -28,7 +27,7 @@ class Api::MoviesController < ApplicationController
     if @movie.save
       render "show.json.jbuilder"
     else
-      render json: {errors: @movie.errors.full_messages}, status: unprocessable_entity
+      render json: {errors: @movie.errors.full_messages}, status: :unprocessable_entity
     end
 
   end
@@ -36,8 +35,6 @@ class Api::MoviesController < ApplicationController
   def update
     
     @movie = Movie.find(params[:id])
-    
-    @movie.id = params[:id] || @movie.id
     @movie.title = params[:title] || @movie.title
     @movie.year = params[:year] || @movie.year
     @movie.plot = params[:plot] || @movie.plot
