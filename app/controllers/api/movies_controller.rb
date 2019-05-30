@@ -12,7 +12,7 @@ class Api::MoviesController < ApplicationController
   def show
     
     @movie = Movie.find(params[:id])
-    render "show.json.jbuilder"
+    render "show.html.erb"
 
   end
 
@@ -27,7 +27,7 @@ class Api::MoviesController < ApplicationController
       )
     
     if @movie.save
-      render "show.json.jbuilder"
+      render "show.html.erb"
     else
       render json: {errors: @movie.errors.full_messages}, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class Api::MoviesController < ApplicationController
     @movie.english = params[:english] || @movie.english
     
     if @movie.save
-      render "show.json.jbuilder"
+      render "show.html.erb"
     else
       render json: {errors: @movie.errors.full_messages}, status: :unprocessable_entity
     end
